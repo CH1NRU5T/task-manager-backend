@@ -4,6 +4,7 @@ const createUserRoute = require("./routes/createUserRoute");
 const createTaskRoute = require("./routes/createTaskRoute");
 const updateTaskRoute = require("./routes/updateTaskRoute");
 const getAllTasksRoute = require("./routes/getAllTasksRoute");
+const deleteTaskRoute = require("./routes/deleteTaskRoute");
 const { default: mongoose } = require("mongoose");
 const app = express();
 app.use(json());
@@ -11,6 +12,7 @@ app.use("/", createUserRoute);
 app.use("/", createTaskRoute);
 app.use("/", updateTaskRoute);
 app.use("/", getAllTasksRoute);
+app.use("/", deleteTaskRoute);
 mongoose
   .connect("mongodb://127.0.0.1:27017")
   .then(() => {
