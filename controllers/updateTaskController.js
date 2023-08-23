@@ -6,7 +6,7 @@ async function updateTask(req, res) {
     const { username, id, title, description } = req.body;
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(400).json({ message: "User dosen't exist" });
+      return res.status(400).json({ error: "User dosen't exist" });
     }
     user.tasks.forEach((task) => {
       if (task._id == id) {

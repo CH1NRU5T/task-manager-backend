@@ -4,16 +4,16 @@ async function getAllTasks(req, res) {
   try {
     const { username } = req.params;
     if (!username) {
-      return res.status(400).json({ message: "Username is required" });
+      return res.status(400).json({ error: "Username is required" });
     }
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(400).json({ message: "User does not exist" });
+      return res.status(400).json({ error: "User does not exist" });
     }
     const tasks = user.tasks;
     res.status(200).json({ message: tasks });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ error: err.message });
   }
 }
 module.exports = getAllTasks;

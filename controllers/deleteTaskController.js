@@ -5,7 +5,7 @@ async function deleteTask(req, res) {
     const { username, id } = req.body;
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(400).json({ message: "User dosen't exist" });
+      return res.status(400).json({ error: "User dosen't exist" });
     }
     user.tasks.forEach((task, index) => {
       if (task._id == id) {
