@@ -8,14 +8,18 @@ async function updateTask(req, res) {
     if (!user) {
       return res.status(400).json({ error: "User dosen't exist" });
     }
-    user.tasks.forEach((task) => {
+    let found = false;
+    user.tasks.forEach(async (task) => {
       if (task._id == id) {
         task.title = title;
         task.description = description;
+        found = true;
       }
     });
-    await user.save();
-    res.status(200).json({ message: "Task updated successfully" });
+    if (found) {
+      await user.save();
+      return res.status(200).json({ message: "Task updated" });
+    } else return res.status(500).json({ error: "Task not found" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: err });

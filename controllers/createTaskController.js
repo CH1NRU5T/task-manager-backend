@@ -9,7 +9,12 @@ async function createTask(req, res) {
     }
     user.tasks.push({ title, description });
     await user.save();
-    res.status(200).json({ message: "Task added successfully" });
+    res
+      .status(200)
+      .json({
+        message: "Task added successfully",
+        task: user.tasks[user.tasks.length - 1],
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: err });

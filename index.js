@@ -6,6 +6,7 @@ const updateTaskRoute = require("./routes/updateTaskRoute");
 const getAllTasksRoute = require("./routes/getAllTasksRoute");
 const deleteTaskRoute = require("./routes/deleteTaskRoute");
 const { default: mongoose } = require("mongoose");
+require("dotenv").config();
 const app = express();
 app.use(json());
 app.use("/", createUserRoute);
@@ -14,7 +15,7 @@ app.use("/", updateTaskRoute);
 app.use("/", getAllTasksRoute);
 app.use("/", deleteTaskRoute);
 mongoose
-  .connect("mongodb://127.0.0.1:27017")
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
   .then(() => {
     console.log("connected to database");
   })
