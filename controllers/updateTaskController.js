@@ -21,7 +21,6 @@ async function updateTask(req, res) {
       return res.status(200).json({ message: "Task updated" });
     } else return res.status(500).json({ error: "Task not found" });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: err });
   }
 }

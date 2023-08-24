@@ -10,7 +10,6 @@ async function createUser(req, res) {
     await user.save();
     res.status(200).json({ message: user });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: err });
   }
 }
